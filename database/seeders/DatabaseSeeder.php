@@ -20,21 +20,21 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com'
         ]);
 
-        $categories = [
-            'Technology',
-            'Health',
-            'Lifestyle',
-            'Education',
-            'Travel',
-            'Food',
-            'Finance',
-            'Entertainment',
-        ];
+        // $categories = [
+        //     'Technology',
+        //     'Health',
+        //     'Lifestyle',
+        //     'Education',
+        //     'Travel',
+        //     'Food',
+        //     'Finance',
+        //     'Entertainment',
+        // ];
 
-        foreach ($categories as $category) {
-            Category::create(['name' => $category]);
-        }
+        // foreach ($categories as $category) {
+        //     Category::create(['name' => $category]);
+        // }
 
-        Post::factory(100)->create();
+        // Post::factory(100)->create();
     }
 }
