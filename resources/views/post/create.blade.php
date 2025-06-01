@@ -7,7 +7,7 @@
                     <div>
                         <x-input-label for="image" :value="__('Image')" />
                         <x-text-input id="image" class="block mt-1 w-full" type="file" name="image"
-                            :value="old('title')" autofocus />
+                            :value="old('image')" autofocus />
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
                     <div class="mt-4">

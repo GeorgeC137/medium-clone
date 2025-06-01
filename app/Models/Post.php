@@ -18,5 +18,13 @@ class Post extends Model
             ->saveSlugsTo('slug');
     }
 
-    protected $guarded = [];
+    protected $fillable = [
+    	'title',
+    	'slug',
+    	'image',
+    	'content',
+    	'user_id',
+    	'category_id',
+    	'published_at'
+    ];
 }
