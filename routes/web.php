@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('dashboard');
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+    Route::get('/@{username}/{post:slug}', [PostController::class, 'show'])->name('post.show');
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
 });
 
