@@ -5,10 +5,10 @@
                 <h1 class="mb-4 text-2xl text-white">{{ $post->title }}</h1>
                 <!-- User Avatar Section -->
                 <div class="flex gap-4">
-                    <img class="w-12 h-12 rounded-full" src="{{ $post->user->image ? $post->user->imageUrl() : 'https://picsum.photos/200' }}" alt="{{$post->user->name}}" />
+                    <x-user-avatar :user="$post->user" />
                     <div>
                         <div class="flex gap-2">
-                            <h3 class="text-white">{{ $post->user->name }}</h3>
+                            <a class="text-white hover:underline" href="{{ route('profile.show', $post->user) }}">{{ $post->user->name }}</a>
                             &middot;
                             <a href="#" class="text-emerald-500">Follow</a>
                         </div>
