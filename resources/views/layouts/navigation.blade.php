@@ -59,8 +59,8 @@
                 @endauth
 
                 @guest
-                    <a href="{{ route('register') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">Create an account</a>
-                    <a href="{{ route('login') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">
+                    <a href="{{ route('register') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">Create an account</a>
+                    <a href="{{ route('login') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">
                         Login
                     </a>
                 @endguest
@@ -115,10 +115,10 @@
         @endauth
 
         @guest
-            <a href="{{ route('register') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">
+            <a href="{{ route('register') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">
                 Create an account
             </a>
-            <a href="{{ route('login') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">
+            <a href="{{ route('login') }}" class="hidden sm:flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text uppercase text-white hover:text-gray-500 focus:outline-none transition ease-in-out duration-150">
                 Login
             </a>
         @endguest

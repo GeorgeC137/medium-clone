@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
@@ -9,13 +10,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/@{user}', [PublicProfileController::class, 'show'])->name('profile.show');
+Route::get('/@{user:username}', [PublicProfileController::class, 'show'])->name('profile.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('dashboard');
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
     Route::get('/@{username}/{post:slug}', [PostController::class, 'show'])->name('post.show');
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
+    Route::post('follow/{user}', [FollowerController::class, 'followUnfollow'])->name('follow');
 });
 
 Route::middleware('auth')->group(function () {
