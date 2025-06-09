@@ -2,10 +2,10 @@
 
 <div {{ $attributes }} x-data="{
     following: {{ $user->isFollowedBy(auth()->user()) ? 'true' : 'false' }},
-    followerCount: {{ $user->followers()->count() }},
+    followersCount: {{ $user->followers()->count() }},
     follow() {
         this.following = !this.following
-        axios.post('follow/{{ $user->id }}')
+        axios.post('{{ route('follow', $user->username) }}')
             .then(res => {
                 console.log(res.data);
                 this.followersCount = res.data.followersCount;

@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/@{user:username}', [PublicProfileController::class, 'show'])->name('profile.show');
+Route::get('/@{user}', [PublicProfileController::class, 'show'])->name('profile.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('dashboard');

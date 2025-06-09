@@ -16,6 +16,10 @@ class User extends Authenticatable implements MustVerifyEmail
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasSlug;
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 
     public function getSlugOptions(): SlugOptions
     {
