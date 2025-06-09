@@ -7,12 +7,7 @@
                 <div class="flex gap-4">
                     <x-user-avatar :user="$post->user" />
                     <div>
-                        <div x-data="followData(
-                            '{{ $post->user->username }}',
-                            {{ $post->user->isFollowedBy(auth()->user()) ? 'true' : 'false' }},
-                            {{ $post->user->followers()->count() }},
-                            '{{ route('follow', $post->user->username) }}'
-                        )" class="flex gap-2">
+                        <x-follow-container :user="$post->user" class="flex gap-2">
                             <a class="text-white hover:underline"
                                 href="{{ route('profile.show', $post->user) }}">{{ $post->user->name }}</a>
                             &middot;
@@ -20,7 +15,7 @@
                                 <button @click="follow()" x-text="following ? 'Unfollow' : 'Follow'"
                                     :class="following ? 'text-red-600' : 'text-emerald-500'"></button>
                             @endif
-                        </div>
+                        </x-follow-container>
                         <div class="flex gap-2 text-sm text-gray-500">
                             {{ $post->readTime() }} min read
                             &middot;
@@ -29,7 +24,7 @@
                     </div>
                 </div>
                 <!-- Clap Section -->
-                <x-clap-button />
+                <x-clap-button :post="$post" />
                 <!-- Content Section -->
                 <div class="mt-8">
                     <img src="{{ $post->image ? $post->imageUrl() : 'https://flowbite.com/docs/images/blog/image-1.jpg' }}"
@@ -45,7 +40,7 @@
                     </span>
                 </div>
 
-                <x-clap-button />
+                <x-clap-button :post="$post" />
             </div>
         </div>
     </div>
