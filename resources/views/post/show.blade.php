@@ -10,8 +10,8 @@
                         <x-follow-container :user="$post->user" class="flex gap-2">
                             <a class="text-white hover:underline"
                                 href="{{ route('profile.show', $post->user) }}">{{ $post->user->name }}</a>
-                            &middot;
                             @if (auth()->check() && auth()->user()->id !== $post->user->id)
+                                &middot;
                                 <button @click="follow()" x-text="following ? 'Unfollow' : 'Follow'"
                                     :class="following ? 'text-red-600' : 'text-emerald-500'"></button>
                             @endif

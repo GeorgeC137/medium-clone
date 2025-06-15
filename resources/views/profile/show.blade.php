@@ -17,12 +17,7 @@
                             @endforelse
                         </div>
                     </div>
-                    <div x-data="followData(
-                        '{{ $post->user->username }}',
-                        {{ $post->user->isFollowedBy(auth()->user()) ? 'true' : 'false' }},
-                        {{ $post->user->followers()->count() }},
-                        '{{ route('follow', $post->user->username) }}'
-                    )">
+                    <x-follow-container :user="$user">
                         <x-user-avatar :user="$user" size="w-24 h-24" />
                         <h3 class="text-white mt-2">{{ $user->name }}</h3>
                         <p class="text-gray-300"><span x-text="followersCount"></span> followers</p>
@@ -35,7 +30,7 @@
                                 </button>
                             </div>
                         @endif
-                    </div>
+                    </x-follow-container>
                 </div>
             </div>
         </div>
