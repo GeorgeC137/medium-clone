@@ -9,13 +9,22 @@ class ClapController extends Controller
 {
     public function clap(Post $post, Request $request)
     {
-        $post->claps()->firstOrCreate([
-            'user_id' => $request->user()->id,
-        ]);
+        $hasClapped = $request->user()->hasClapped($post);
 
-        return response()->json([
-            'message' => 'Clap recorded successfully.',
-            'clapsCount' => $post->claps()->count(),
-        ]);
+        if ($hasClapped) {
+            $post->claps()->where('user_id', $request->user()->id)->delete();
+            return response()->json([
+                'message' => 'Clap removed successfully.',
+                'clapsCount' => $post->claps()->count(),
+            ]);
+        } else {
+            $post->claps()->firstOrCreate([
+                'user_id' => $request->user()->id,
+            ]);
+            return response()->json([
+                'message' => 'Clap recorded successfully.',
+                'clapsCount' => $post->claps()->count(),
+            ]);
+        }
     }
 }
