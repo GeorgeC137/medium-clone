@@ -10,11 +10,14 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasSlug;
+    use HasFactory, Notifiable, HasSlug, InteractsWithMedia;
 
     public function getRouteKeyName()
     {
@@ -26,6 +29,20 @@ class User extends Authenticatable implements MustVerifyEmail
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('username');
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('avatar')
+            ->width(128)
+            ->crop(128, 128);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('avatar')
+            ->singleFile();
     }
 
     public function posts()
@@ -95,10 +112,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function imageUrl()
     {
-        if ($this->image) {
-            return Storage::url($this->image);
-        }
-
-        return null;
+        return $this->getFirstMedia('avatar')?->getUrl('avatar');
     }
 }

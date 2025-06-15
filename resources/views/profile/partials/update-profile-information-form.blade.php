@@ -17,9 +17,9 @@
         @csrf
         @method('patch')
 
-        @if($user->image)
+        @if($user->getFirstMedia() ? $user->getFirstMedia() : 'https:://picsum.photos/200')
             <div>
-                <img src="{{ $user->imageUrl() }}" alt="{{ $user->name }}" class="rounded-full h-20 w-20">
+                <img src="{{ $user->imageUrl() ? $user->imageUrl() : 'https:://picsum.photos/200' }}" alt="{{ $user->name }}" class="rounded-full h-20 w-20">
             </div>
         @endif
 

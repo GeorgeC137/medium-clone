@@ -50,11 +50,14 @@ class PostController extends Controller
         // $imagePath = $image->store('posts', 'public');
 
         // Handle file upload
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('posts', 'public');
-        }
+        // if ($request->hasFile('image')) {
+        //     $data['image'] = $request->file('image')->store('posts', 'public');
+        // }
 
-        Post::create($data);
+        $post = Post::create($data);
+
+        $post->addMediaFromRequest('image')
+            ->toMediaCollection();
 
         return redirect()->route('dashboard')->with('success', 'Post created successfully.');
     }

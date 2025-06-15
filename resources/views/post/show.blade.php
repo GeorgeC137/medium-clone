@@ -27,7 +27,7 @@
                 <x-clap-button :post="$post" />
                 <!-- Content Section -->
                 <div class="mt-8">
-                    <img src="{{ $post->image ? $post->imageUrl() : 'https://flowbite.com/docs/images/blog/image-1.jpg' }}"
+                    <img src="{{ $post->imageUrl() ? $post->imageUrl() : 'https://flowbite.com/docs/images/blog/image-1.jpg' }}"
                         alt="{{ $post->title }}">
                     <div class="mt-4 text-white">
                         {{ $post->content }}

@@ -20,7 +20,7 @@
 
     </div>
     <a href="{{ route('post.show', ['username' => $post->user->username, 'post' => $post]) }}">
-        <img class="rounded-r-lg w-48 h-full max-h-64 object-cover" src="{{ $post->image ? Storage::url($post->image) : 'https://flowbite.com/docs/images/blog/image-1.jpg' }}"
+        <img class="rounded-r-lg w-48 h-full max-h-64 object-cover" src="{{ $post->imageUrl() ? $post->imageUrl() : 'https://flowbite.com/docs/images/blog/image-1.jpg' }}"
             alt="" />
     </a>
 </div>
