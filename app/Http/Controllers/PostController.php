@@ -15,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $query = Post::latest();
+        $query = Post::with(['user', 'media'])
+            ->withCount('claps')
+            ->latest();
+
         $user = Auth::user();
 
         if ($user) {
@@ -25,7 +28,7 @@ class PostController extends Controller
 
         $posts = $query->simplePaginate(5);
 
-        return view('post.index', compact( 'posts'));
+        return view('post.index', compact('posts', 'user'));
     }
 
     /**
@@ -94,9 +97,13 @@ class PostController extends Controller
     }
 
     public function category(Category $category)
-    {
-        $posts = $category->posts()->latest()->simplePaginate(5);
-
+    {           
+        $posts = $category->posts()
+            ->with(['user', 'media'])
+            ->withCount('claps')
+            ->latest()
+            ->simplePaginate(5);
+        
         return view('post.index', compact('posts'));
     }
 }

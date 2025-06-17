@@ -7,15 +7,12 @@
             {{ Str::words($post->content, 20) }}
         </div>
 
-        <a href="{{ route('post.show', ['username' => $post->user->username, 'post' => $post]) }}">
-            <x-primary-button>
-                Read more
-                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-            </x-primary-button>
+        <a href="{{ route('post.show', ['username' => $post->user->username, 'post' => $post]) }}" class="text-sm text-white flex gap-4">
+            {{ $post->getCreatedAtDate() }}
+            <span class="inline-flex gap-1 items-center">
+                <x-like-button :fill="auth()->user()->hasClapped($post) ? 'currentColor' : 'none'" class="size-5" />
+                {{ $post->claps_count ? $post->claps_count : 0 }}
+            </span>
         </a>
 
     </div>

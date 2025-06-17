@@ -68,6 +68,22 @@ class Post extends Model implements HasMedia
 
     public function imageUrl($conversionName = '')
     {
-        return $this->getFirstMedia()?->getUrl($conversionName);
+        $media = $this->getFirstMedia();
+
+        if ($media->hasGeneratedConversion($conversionName)) {
+            return $media->getUrl($conversionName);
+        }
+
+        return $media->getUrl() ?: 'https://picsum.photos/200';
+    }
+
+    public function getCreatedAtDate()
+    {
+        return $this->created_at->format('F j, Y');
+    }
+
+    public function hasBeenLikedByUser($userId)
+    {
+        return $this->claps()->where('user_id', $userId)->exists();
     }
 }

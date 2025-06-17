@@ -17,9 +17,9 @@
         @csrf
         @method('patch')
 
-        @if($user->getFirstMedia() ? $user->getFirstMedia() : 'https:://picsum.photos/200')
+        @if($user->imageUrl())
             <div>
-                <img src="{{ $user->imageUrl() ? $user->imageUrl() : 'https:://picsum.photos/200' }}" alt="{{ $user->name }}" class="rounded-full h-20 w-20">
+                <img src="{{ $user->imageUrl() ? $user->imageUrl() : 'https://picsum.photos/200' }}" alt="{{ $user->name }}" class="rounded-full h-20 w-20">
             </div>
         @endif
 
@@ -81,7 +81,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
+                    class="text-sm text-green-600 dark:text-green-400"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>
